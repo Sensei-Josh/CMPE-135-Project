@@ -1,1 +1,0 @@
-/usr/bin/c++ -g -rdynamic -pthread CMakeFiles/wxrc.dir/__/__/__/utils/wxrc/wxrc.cpp.o -o ../lib/wxrc-3.2  -Wl,-rpath,/home/josh/Documents/wxWidgets-3.2.2.1/testing/lib: ../lib/libwx_baseu_xml-3.2.so.0.2.1 ../lib/libwx_baseu-3.2.so.0.2.1 
