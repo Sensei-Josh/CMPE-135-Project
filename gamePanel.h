@@ -9,7 +9,7 @@ using namespace std;
 class gamePanel : public wxPanel
 {
 public:
-	gamePanel(wxFrame* parent) : wxPanel(parent, wxID_ANY)
+	gamePanel(wxWindow* parent) : wxPanel(parent, wxID_ANY)
 	{
 		wxSizer* main_sizer = new wxBoxSizer(wxVERTICAL);
 		
@@ -38,8 +38,9 @@ public:
 	
 	void OnEnd(wxCommandEvent& event)
 	{
-		Hide();
+		this->Hide();
 	}
+
 private:
 	wxPanel *end_panel = new wxPanel(this, wxID_ANY);
 	

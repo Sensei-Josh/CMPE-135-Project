@@ -1,15 +1,14 @@
 #pragma once
 
 #include <wx/wx.h>
+#include "wxImageFrame.h"
 
 using namespace std;
  
-class MyApp : public wxApp
-{
-private:
-    static wxColour* m_backgroundColour;
-public:
-    virtual bool OnInit() override;
-    static const wxColour& BackgroundColour();
-};
+class MyApp: public wxApp
+    {
+    public:
+        bool OnInit();
+        
+    };
 
