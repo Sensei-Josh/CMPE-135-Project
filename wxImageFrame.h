@@ -63,7 +63,7 @@ private:
         quiz = new gamePanel(m_imagePanel);
 
         wxBoxSizer* bg_sizer = new wxBoxSizer(wxVERTICAL);
-        bg_sizer->Add(quiz, 0, wxEXPAND, 0);
+        bg_sizer->Add(quiz, 1, wxEXPAND);
 
         quiz->Show(false);
 
