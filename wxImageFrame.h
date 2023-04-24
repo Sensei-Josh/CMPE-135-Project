@@ -99,7 +99,6 @@ private:
     void OnNewGame(wxCommandEvent& event) //new game
     {
     	quiz->Show(true);
-        Layout();
     }
 
     void OnAbout(wxCommandEvent& event)
