@@ -1,23 +1,18 @@
 #pragma once
 
 #include <wx/wx.h>
-#include "ImgPanel.h"
 #include "scorer.h"
 
-class Q2Panel : public wxPanel
+class Q1Panel : public wxPanel
 {
 public:
-	Q2Panel(wxWindow* parent, wxString imageFile, wxBitmapType imageFormat, wxString question, 
+	Q1Panel(wxWindow* parent, wxString question,
 		wxString c1, wxString c2, wxString c3, wxString c4, scorer *s, int a) : wxPanel(parent, wxID_ANY, wxDefaultPosition, wxSize(400,400))
 	{
 		wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
 		
-		image = new ImgPanel(this, imageFile, imageFormat);
 		init_questionPanel(question);
 		init_buttonPanel(c1, c2, c3, c4);
-		
-		mainSizer->Add(image, 0, wxALIGN_CENTER, 0);
-		mainSizer->AddSpacer(10);
 		
 		mainSizer->Add(questionPanel, 0, wxALIGN_CENTER, 0);
 		mainSizer->AddSpacer(10);
@@ -25,13 +20,12 @@ public:
 		mainSizer->Add(buttonPanel, 0, wxALIGN_CENTER, 0);
 		
 		this->SetSizer(mainSizer);
-		this->SetBackgroundColour(wxColour(*wxGREEN));
+        this->SetBackgroundColour(wxColour(*wxGREEN));
 		
 		sPtr = s;
 		answer = a;
 	}
 private:
-	wxPanel* image;
 	wxPanel* buttonPanel;
 	wxPanel* questionPanel;
 	
@@ -54,12 +48,12 @@ private:
 	void init_buttonPanel(wxString C1, wxString C2, wxString C3, wxString C4)
 	{
 		buttonPanel = new wxPanel(this, wxID_ANY);
-		wxBoxSizer* bSizer = new wxBoxSizer(wxHORIZONTAL);
+		wxBoxSizer* bSizer = new wxBoxSizer(wxVERTICAL);
 		
-		b1 = new wxButton(buttonPanel, wxID_ANY, C1, wxPoint(100, 50), wxSize(70,30));
-		b2 = new wxButton(buttonPanel, wxID_ANY, C2, wxPoint(100, 50), wxSize(70,30));
-		b3 = new wxButton(buttonPanel, wxID_ANY, C3, wxPoint(100, 50), wxSize(70,30));
-		b4 = new wxButton(buttonPanel, wxID_ANY, C4, wxPoint(100, 50), wxSize(70,30));
+		b1 = new wxButton(buttonPanel, wxID_ANY, C1, wxPoint(100, 50), wxSize(300,30));
+		b2 = new wxButton(buttonPanel, wxID_ANY, C2, wxPoint(100, 50), wxSize(300,30));
+		b3 = new wxButton(buttonPanel, wxID_ANY, C3, wxPoint(100, 50), wxSize(300,30));
+		b4 = new wxButton(buttonPanel, wxID_ANY, C4, wxPoint(100, 50), wxSize(300,30));
 		
 		bSizer->Add(b1);
 		bSizer->AddSpacer(5);
@@ -69,10 +63,10 @@ private:
 		bSizer->AddSpacer(5);
 		bSizer->Add(b4);
 		
-		b1->Bind(wxEVT_BUTTON, &Q2Panel::Onb1, this);
-		b2->Bind(wxEVT_BUTTON, &Q2Panel::Onb2, this);
-		b3->Bind(wxEVT_BUTTON, &Q2Panel::Onb3, this);
-		b4->Bind(wxEVT_BUTTON, &Q2Panel::Onb4, this);
+		b1->Bind(wxEVT_BUTTON, &Q1Panel::Onb1, this);
+		b2->Bind(wxEVT_BUTTON, &Q1Panel::Onb2, this);
+		b3->Bind(wxEVT_BUTTON, &Q1Panel::Onb3, this);
+		b4->Bind(wxEVT_BUTTON, &Q1Panel::Onb4, this);
 		
 		buttonPanel->SetSizer(bSizer);
 	}

@@ -3,6 +3,7 @@
 #include <wx/wx.h>
 #include <iostream>
 #include "enum.h"
+#include "Q1Panel.h"
 #include "Q2Panel.h"
 #include "scorer.h"
 
@@ -33,6 +34,9 @@ public:
 			
 		wxPanel* q2 = new Q2Panel(this, wxT("Solosis.png"), wxBITMAP_TYPE_PNG, wxT("Name this Pokemon?"), 
 			wxT("Electrode"), wxT("Solosis"), wxT("Pokeball"), wxT("Voltorb"), s, 2);
+
+		wxPanel* q3 = new Q1Panel(this, wxT("What's the Pokemon catch phrase?"), 
+			wxT("Gotta catch 'em all"), wxT("Gotta catch them all"), wxT("Got to catch 'em all"), wxT("Gotta catch'em Pokemon"), s, 1);
 		
         	for (int i = 0; i < 10; i++)
         	{
@@ -59,6 +63,9 @@ public:
 		main_sizer->AddSpacer(10);
 		
 		main_sizer->Add(q2, 0, wxALIGN_CENTER, 0);
+		main_sizer->AddSpacer(10);
+
+		main_sizer->Add(q3, 0, wxALIGN_CENTER, 0);
 		main_sizer->AddSpacer(10);
 
         	main_sizer->Add(questions_panel, 0, wxALIGN_CENTER, 0);
