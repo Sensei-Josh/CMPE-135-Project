@@ -5,7 +5,7 @@
 class ImgPanel : public wxPanel
 {
 public:
-	ImgPanel(wxWindow* parent, wxString file, wxBitmapType format) : wxPanel(parent, wxID_ANY, wxDefaultPosition, wxSize(300,300))
+	ImgPanel(wxWindow* parent, wxString file, wxBitmapType format) : wxPanel(parent, wxID_ANY, wxDefaultPosition, wxSize(250,250))
 	{
 		m_image = wxImage(file, format);
 		if (!m_image.IsOk()) { return; }

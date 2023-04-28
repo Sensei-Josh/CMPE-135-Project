@@ -2,20 +2,22 @@
 
 #include <wx/wx.h>
 #include "ImgPanel.h"
-#include "scorer.h"
+#include "Q0Panel.h"
+#include "enum.h"
 
-class Q2Panel : public wxPanel
+class Q2Panel : public Q0Panel
 {
 public:
-	Q2Panel(wxWindow* parent, wxString imageFile, wxBitmapType imageFormat, wxString question, 
-		wxString c1, wxString c2, wxString c3, wxString c4, scorer *s, int a) : wxPanel(parent, wxID_ANY, wxDefaultPosition, wxSize(400,400))
+	Q2Panel(wxWindow* parent, q_param p, scorer *s, int a) : 
+			Q0Panel(parent, wxSize(400,350))
 	{
-		wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
+		mainSizer = new wxBoxSizer(wxVERTICAL);
 		
-		image = new ImgPanel(this, imageFile, imageFormat);
-		init_questionPanel(question);
-		init_buttonPanel(c1, c2, c3, c4);
+		image = new ImgPanel(this, p.imgFile, p.type);
+		init_questionPanel(p.question);
+		init_buttonPanel(p.first, p.second, p.third, p.fourth);
 		
+		mainSizer->AddSpacer(10);
 		mainSizer->Add(image, 0, wxALIGN_CENTER, 0);
 		mainSizer->AddSpacer(10);
 		
@@ -33,15 +35,11 @@ public:
 private:
 	wxPanel* image;
 	wxPanel* buttonPanel;
-	wxPanel* questionPanel;
 	
 	wxButton* b1;
 	wxButton* b2;
 	wxButton* b3;
 	wxButton* b4;
-	
-	scorer* sPtr;
-	int answer;
 	
 	void init_questionPanel(wxString q)
 	{

@@ -1,41 +1,40 @@
 #pragma once
 
 #include <wx/wx.h>
-#include "scorer.h"
+#include "Q0Panel.h"
+#include "enum.h"
 
-class Q1Panel : public wxPanel
+class Q1Panel : public Q0Panel
 {
 public:
-	Q1Panel(wxWindow* parent, wxString question,
-		wxString c1, wxString c2, wxString c3, wxString c4, scorer *s, int a) : wxPanel(parent, wxID_ANY, wxDefaultPosition, wxSize(400,400))
+	Q1Panel(wxWindow* parent, q_param p, scorer *s, int a) : 
+			Q0Panel(parent, wxSize(400, 200))
 	{
-		wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
+		mainSizer = new wxBoxSizer(wxVERTICAL);
 		
-		init_questionPanel(question);
-		init_buttonPanel(c1, c2, c3, c4);
+		init_questionPanel(p.question);
+		init_buttonPanel(p.first, p.second, p.third, p.fourth);
 		
+		
+		mainSizer->AddSpacer(20);
 		mainSizer->Add(questionPanel, 0, wxALIGN_CENTER, 0);
 		mainSizer->AddSpacer(10);
 		
 		mainSizer->Add(buttonPanel, 0, wxALIGN_CENTER, 0);
 		
 		this->SetSizer(mainSizer);
-        this->SetBackgroundColour(wxColour(*wxGREEN));
+        	this->SetBackgroundColour(wxColour(*wxGREEN));
 		
 		sPtr = s;
 		answer = a;
 	}
 private:
 	wxPanel* buttonPanel;
-	wxPanel* questionPanel;
 	
 	wxButton* b1;
 	wxButton* b2;
 	wxButton* b3;
 	wxButton* b4;
-	
-	scorer* sPtr;
-	int answer;
 	
 	void init_questionPanel(wxString q)
 	{
