@@ -8,7 +8,7 @@
 class Q2Panel : public Q0Panel
 {
 public:
-	Q2Panel(wxWindow* parent, q_param p, scorer *s, int a) : 
+	Q2Panel(wxWindow* parent, q_param p, scorer *s) : 
 			Q0Panel(parent, wxSize(400,350))
 	{
 		mainSizer = new wxBoxSizer(wxVERTICAL);
@@ -30,7 +30,7 @@ public:
 		this->SetBackgroundColour(wxColour(*wxGREEN));
 		
 		sPtr = s;
-		answer = a;
+		answer = p.answer;
 	}
 private:
 	wxPanel* image;
@@ -81,6 +81,14 @@ private:
 		b2->Enable(false);
 		b3->Enable(false);
 		b4->Enable(false);
+	}
+	
+	void EnableButtons()
+	{
+		b1->Enable(true);
+		b2->Enable(true);
+		b3->Enable(true);
+		b4->Enable(true);
 	}
 	
 	void Onb1(wxCommandEvent& event)

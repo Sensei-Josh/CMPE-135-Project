@@ -6,7 +6,10 @@
 #include "questionPanels/Q0Panel.h"
 #include "questionPanels/Q1Panel.h"
 #include "questionPanels/Q2Panel.h"
+
+#include "fileHandler.h"
 #include "scorer.h"
+#include "endDialog.h"
 
 using namespace std;
 
@@ -15,6 +18,7 @@ class gamePanel : public wxScrolledWindow
 public:
 	gamePanel(wxWindow* parent) : wxScrolledWindow(parent, wxID_ANY)
 	{
+		fileHandler loader("q_data.txt");
 		wxSizer* main_sizer = new wxBoxSizer(wxVERTICAL);
 		
 		//set Round title
@@ -26,32 +30,31 @@ public:
 		//roundSizer->Add(roundTitle);
 
 		// questions section
-		q_param quest1(wxT("images/Voltorb.png"), wxBITMAP_TYPE_PNG, wxT("Name this Pokemon?"), 
+		/*q_param quest1(wxT("images/Voltorb.png"), png, wxT("Name this Pokemon?"), 
 			wxT("Voltorb"), wxT("Electrode"), wxT("Solosis"), wxT("Pokeball"));
 		
-		q_param quest2(wxT("images/Solosis.png"), wxBITMAP_TYPE_PNG, wxT("Name this Pokemon?"), 
+		q_param quest2(wxT("images/Solosis.png"), png, wxT("Name this Pokemon?"), 
 			wxT("Electrode"), wxT("Solosis"), wxT("Pokeball"), wxT("Voltorb"));
 		
 		q_param quest3(wxT("What's the Pokemon catch phrase?"), 
 			wxT("Gotta catch 'em all"), wxT("Gotta catch them all"), 
-				wxT("Got to catch 'em all"), wxT("Gotta catch'em Pokemon"));
+				wxT("Got to catch 'em all"), wxT("Gotta catch'em Pokemon"));*/
 		
-		Q0Panel* q1 = new Q2Panel(this, quest1, s, 1);
-			
-		Q0Panel* q2 = new Q2Panel(this, quest2, s, 2);
-
-		Q0Panel* q3 = new Q1Panel(this, quest3, s, 1);
+		q_param quest1 = loader.getQuestion();
+		q_param quest2 = loader.getQuestion();
+		q_param quest3 = loader.getQuestion();
+		q_param quest4 = loader.getQuestion();
+		q_param quest5 = loader.getQuestion();
+		q_param quest6 = loader.getQuestion();
+		q_param quest7 = loader.getQuestion();
 		
-		/*wxPanel *questions_panel = new wxPanel(this, wxID_ANY);
-		wxBoxSizer* questionsSizer = new wxBoxSizer(wxVERTICAL);
-		
-        	for (int i = 0; i < 1; i++)
-        	{
-            		wxButton* testButton = new wxButton(questions_panel, wxID_ANY, "Question", wxPoint(100, 50), wxSize(70,20));
-			questionsSizer->Add(testButton);
-        	}
-		questions_panel->SetSizer(questionsSizer);*/
-
+		Q0Panel* q1 = new Q1Panel(this, quest1, s);
+		Q0Panel* q2 = new Q2Panel(this, quest2, s);
+		Q0Panel* q3 = new Q2Panel(this, quest3, s);
+		Q0Panel* q4 = new Q1Panel(this, quest4, s);
+		Q0Panel* q5 = new Q1Panel(this, quest5, s);
+		Q0Panel* q6 = new Q1Panel(this, quest6, s);
+		Q0Panel* q7 = new Q2Panel(this, quest7, s);
 		
 		//set End Button
 		wxBoxSizer* endSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -75,10 +78,19 @@ public:
 
 		main_sizer->Add(q3, 0, wxALIGN_CENTER, 0);
 		main_sizer->AddSpacer(10);
-
-        	//main_sizer->Add(questions_panel, 0, wxALIGN_CENTER, 0);
-		//main_sizer->AddSpacer(30);
 		
+		main_sizer->Add(q4, 0, wxALIGN_CENTER, 0);
+		main_sizer->AddSpacer(10);
+		
+		main_sizer->Add(q5, 0, wxALIGN_CENTER, 0);
+		main_sizer->AddSpacer(10);
+		
+		main_sizer->Add(q6, 0, wxALIGN_CENTER, 0);
+		main_sizer->AddSpacer(10);
+		
+		main_sizer->Add(q7, 0, wxALIGN_CENTER, 0);
+		main_sizer->AddSpacer(10);
+
 		main_sizer->AddSpacer(10);
 		main_sizer->Add(end_panel, 0, wxALIGN_RIGHT, 0);
 		
@@ -88,12 +100,14 @@ public:
 	}
 	
 	void OnEnd(wxCommandEvent& event)
-	{
+	{	
+		endDialog dialog(this, _("Final Score"), s->get_max(), s->get_score());
+		dialog.ShowModal();
 		this->Hide();
 	}
 
 private:
-	scorer* s = new scorer(10);
+	scorer* s = new scorer(7);
 	wxPanel *end_panel = new wxPanel(this, wxID_ANY);
 	
 	wxButton* endButton = new wxButton(end_panel, wxID_ANY, "Finish", wxPoint(100, 50), wxSize(70,20));

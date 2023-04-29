@@ -21,11 +21,12 @@ public:
 	
 	void check(int c, int a)
 	{
-		if(c == a) inc_score();
+		if(c == a) score++;
 		return;
 	}
 
 	float get_score() { return score; }
+	int get_max() { return max; }
 	void inc_score() { score++; }
 	float calc_final() { return ((score / max) * 100);}
 	void inc_qs() { qs_answered++; }

@@ -1,13 +1,15 @@
 #pragma once
 
 #include <wx/wx.h>
+#include "enum.h"
 
 class ImgPanel : public wxPanel
 {
 public:
-	ImgPanel(wxWindow* parent, wxString file, wxBitmapType format) : wxPanel(parent, wxID_ANY, wxDefaultPosition, wxSize(250,250))
+	ImgPanel(wxWindow* parent, wxString file, bitType format) : wxPanel(parent, wxID_ANY, wxDefaultPosition, wxSize(250,250))
 	{
-		m_image = wxImage(file, format);
+		wxBitmapType type = chooseFactory(format);
+		m_image = wxImage(file, type);
 		if (!m_image.IsOk()) { return; }
 		
 		CreateScaledBg();
@@ -21,6 +23,17 @@ public:
 private:
 	wxImage m_image;
     	wxBitmap m_scaledBg;
+    	
+    	wxBitmapType chooseFactory(bitType type)
+    	{
+    		switch(type)
+    		{
+    			case png: return wxBITMAP_TYPE_PNG;
+    			case jpeg: return wxBITMAP_TYPE_JPEG;
+    			case bmp: return wxBITMAP_TYPE_BMP;
+    			default: return wxBITMAP_TYPE_PNG;
+    		};
+    	}
     	
 	void CreateScaledBg()
     	{

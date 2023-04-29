@@ -11,18 +11,33 @@ enum ID_Frame1
 
 };
 
+enum bitType 
+{
+	png, jpeg, bmp
+
+};
+
 struct q_param
 {
 public:
-	q_param(wxString img, wxBitmapType format, wxString q, wxString c1, wxString c2, wxString c3, wxString c4) : 
-		imgFile(img), type(format), question(q), first(c1), second(c2), third(c3), fourth(c4) {}
-	q_param(wxString q, wxString c1, wxString c2, wxString c3, wxString c4) : 
-		question(q), first(c1), second(c2), third(c3), fourth(c4) {}
+	q_param(wxString img, bitType format, wxString q, wxString c1, wxString c2, wxString c3, wxString c4, int a) : 
+		imgFile(img), type(format), question(q), first(c1), second(c2), third(c3), fourth(c4), answer(a) {}
+	q_param(wxString q, wxString c1, wxString c2, wxString c3, wxString c4, int a) : 
+		question(q), first(c1), second(c2), third(c3), fourth(c4), answer(a) {}
+	
 	wxString imgFile;
-	wxBitmapType type;
+	bitType type;
 	wxString question;
 	wxString first;
 	wxString second;
 	wxString third;
 	wxString fourth;
+	int answer;
 };
+
+bitType StrToBit(string type)
+{
+	if(type == "png") return png;
+	else if(type == "jpeg") return jpeg;
+	else return bmp;
+}

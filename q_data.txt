@@ -1,0 +1,62 @@
+1
+What's the Pokemon catch phrase?
+Gotta catch 'em all  
+Gotta catch them all 
+Got to catch 'em all 
+Gotta catch'em Pokemon
+1
+
+2
+images/Voltorb.png
+png
+Name this Pokemon?
+Voltorb 
+Electrode
+Solosis 
+Pokeball
+1
+
+2
+images/Solosis.png
+png
+Name this Pokemon?
+Electrode 
+Solosis
+Pokeball 
+Voltorb
+2
+
+1
+Which came first?
+Video Game
+Card game
+Manga
+Anime
+1
+
+1
+What is the Japanese meaning of Pokemon?
+Pocket Monster
+Digital Monster
+King of Games
+Exploding Sphere
+1
+
+1
+What gen were fairy types added?
+IV
+V
+VI
+VII
+3
+
+2
+images/Pikachu.png
+png
+Name this Pokemon?
+Pichu
+Raichu
+Minun
+Pikachu
+4
+
