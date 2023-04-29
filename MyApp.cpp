@@ -26,7 +26,7 @@ bool MyApp::OnInit()
             // call to be able to insert images
             wxInitAllImageHandlers();
             
-            wxImageFrame* frame = new wxImageFrame(NULL, "bg.bmp", wxBITMAP_TYPE_BMP);
+            wxImageFrame* frame = new wxImageFrame(NULL, "images/bg.bmp", wxBITMAP_TYPE_BMP);
             
             frame->Show();
             return true;

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <wx/wx.h>
-#include "scorer.h"
+#include "../scorer.h"
 
 class Q0Panel : public wxPanel
 {

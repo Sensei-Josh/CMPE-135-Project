@@ -3,9 +3,9 @@
 #include <wx/wx.h>
 #include <iostream>
 #include "enum.h"
-#include "Q0Panel.h"
-#include "Q1Panel.h"
-#include "Q2Panel.h"
+#include "questionPanels/Q0Panel.h"
+#include "questionPanels/Q1Panel.h"
+#include "questionPanels/Q2Panel.h"
 #include "scorer.h"
 
 using namespace std;
@@ -26,10 +26,10 @@ public:
 		//roundSizer->Add(roundTitle);
 
 		// questions section
-		q_param quest1(wxT("Voltorb.png"), wxBITMAP_TYPE_PNG, wxT("Name this Pokemon?"), 
+		q_param quest1(wxT("images/Voltorb.png"), wxBITMAP_TYPE_PNG, wxT("Name this Pokemon?"), 
 			wxT("Voltorb"), wxT("Electrode"), wxT("Solosis"), wxT("Pokeball"));
 		
-		q_param quest2(wxT("Solosis.png"), wxBITMAP_TYPE_PNG, wxT("Name this Pokemon?"), 
+		q_param quest2(wxT("images/Solosis.png"), wxBITMAP_TYPE_PNG, wxT("Name this Pokemon?"), 
 			wxT("Electrode"), wxT("Solosis"), wxT("Pokeball"), wxT("Voltorb"));
 		
 		q_param quest3(wxT("What's the Pokemon catch phrase?"), 
