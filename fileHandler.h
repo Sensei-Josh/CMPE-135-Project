@@ -49,7 +49,6 @@ private:
 	void load_t1()
 	{
 		string question, c1, c2, c3, c4, answer;
-		char *q, *one, *two, *three, *four;
 		
 		getline(loader, question);
 		getline(loader, c1);
@@ -60,14 +59,10 @@ private:
 		
 		//wxWidgets cannot directly convert String to wxString
 		//Must convert String to char * then use wxString::FromUTF8()
-		q = question.data();
-		one = c1.data();
-		two = c2.data();
-		three = c3.data();
-		four = c4.data();
 		
-		q_param quest(wxString::FromUTF8(q), wxString::FromUTF8(one), 
-			wxString::FromUTF8(two), wxString::FromUTF8(three), wxString::FromUTF8(four), stoi(answer));
+		q_param quest(wxString::FromUTF8(question.data()), wxString::FromUTF8(c1.data()), 
+			wxString::FromUTF8(c2.data()), wxString::FromUTF8(c3.data()), wxString::FromUTF8(c4.data()), 
+				stoi(answer), 1);
 		q_info.push_back(quest);
 		
 		//get the space separator in file
@@ -79,7 +74,6 @@ private:
 	void load_t2()
 	{
 		string img, format, question, c1, c2, c3, c4, answer;
-		char *pic, *q, *one, *two, *three, *four;
 		
 		getline(loader, img);
 		getline(loader, format);
@@ -90,15 +84,10 @@ private:
 		getline(loader, c4);
 		getline(loader, answer);
 		
-		pic = img.data();
-		q = question.data();
-		one = c1.data();
-		two = c2.data();
-		three = c3.data();
-		four = c4.data();
-		
-		q_param quest(wxString::FromUTF8(pic), StrToBit(format),wxString::FromUTF8(q), wxString::FromUTF8(one), 
-			wxString::FromUTF8(two), wxString::FromUTF8(three), wxString::FromUTF8(four), stoi(answer));
+		q_param quest(wxString::FromUTF8(img.data()), StrToBit(format), 
+			wxString::FromUTF8(question.data()), wxString::FromUTF8(c1.data()), 
+				wxString::FromUTF8(c2.data()), wxString::FromUTF8(c3.data()), 
+					wxString::FromUTF8(c4.data()), stoi(answer), 2);
 		q_info.push_back(quest);
 		
 		//get the space seperator in file

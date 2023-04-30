@@ -1,8 +1,10 @@
 #pragma once
 
-#include <wx/wx.h>
 //#include <wx/generic/artprov.h>
 #include <iostream>
+#include <vector>
+
+#include <wx/wx.h>
 #include "enum.h"
 #include "questionPanels/Q0Panel.h"
 #include "questionPanels/Q1Panel.h"
@@ -21,7 +23,7 @@ public:
 	gamePanel(wxWindow* parent) : wxScrolledWindow(parent, wxID_ANY)
 	{
 		fileHandler loader("q_data.txt");
-		wxSizer* main_sizer = new wxBoxSizer(wxVERTICAL);
+		main_sizer = new wxBoxSizer(wxVERTICAL);
 		
 		wxMenuItem *newItem = new wxMenuItem(NULL, wxID_NEW, "New"); //to access wxID_NEW
 
@@ -34,15 +36,6 @@ public:
 		//roundSizer->Add(roundTitle);
 
 		// questions section
-		/*q_param quest1(wxT("images/Voltorb.png"), png, wxT("Name this Pokemon?"), 
-			wxT("Voltorb"), wxT("Electrode"), wxT("Solosis"), wxT("Pokeball"));
-		
-		q_param quest2(wxT("images/Solosis.png"), png, wxT("Name this Pokemon?"), 
-			wxT("Electrode"), wxT("Solosis"), wxT("Pokeball"), wxT("Voltorb"));
-		
-		q_param quest3(wxT("What's the Pokemon catch phrase?"), 
-			wxT("Gotta catch 'em all"), wxT("Gotta catch them all"), 
-				wxT("Got to catch 'em all"), wxT("Gotta catch'em Pokemon"));*/
 		
 		q_param quest1 = loader.getQuestion();
 		q_param quest2 = loader.getQuestion();
@@ -51,6 +44,9 @@ public:
 		q_param quest5 = loader.getQuestion();
 		q_param quest6 = loader.getQuestion();
 		q_param quest7 = loader.getQuestion();
+		q_param quest8 = loader.getQuestion();
+		q_param quest9 = loader.getQuestion();
+		q_param quest10 = loader.getQuestion();
 		
 		Q0Panel* q1 = new Q1Panel(this, quest1, s);
 		Q0Panel* q2 = new Q2Panel(this, quest2, s);
@@ -59,6 +55,9 @@ public:
 		Q0Panel* q5 = new Q1Panel(this, quest5, s);
 		Q0Panel* q6 = new Q1Panel(this, quest6, s);
 		Q0Panel* q7 = new Q2Panel(this, quest7, s);
+		Q0Panel* q8 = new Q1Panel(this, quest8, s);
+		Q0Panel* q9 = new Q1Panel(this, quest9, s);
+		Q0Panel* q10 = new Q2Panel(this, quest10, s);
 		
 		//set End Button
 		wxBoxSizer* endSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -94,6 +93,15 @@ public:
 		
 		main_sizer->Add(q7, 0, wxALIGN_CENTER, 0);
 		main_sizer->AddSpacer(10);
+		
+		main_sizer->Add(q8, 0, wxALIGN_CENTER, 0);
+		main_sizer->AddSpacer(10);
+		
+		main_sizer->Add(q9, 0, wxALIGN_CENTER, 0);
+		main_sizer->AddSpacer(10);
+		
+		main_sizer->Add(q10, 0, wxALIGN_CENTER, 0);
+		main_sizer->AddSpacer(10);
 
 		main_sizer->AddSpacer(10);
 		main_sizer->Add(end_panel, 0, wxALIGN_RIGHT, 0);
@@ -112,8 +120,10 @@ public:
 	}
 
 private:
-	scorer* s = new scorer(7);
+	scorer* s = new scorer(10);
 	wxPanel *end_panel = new wxPanel(this, wxID_ANY);
+	vector<Q0Panel> panels;
+	wxSizer* main_sizer;
 	
 	wxButton* endButton = new wxButton(end_panel, wxID_ANY, "Finish", wxPoint(100, 50), wxSize(70,20));
 };

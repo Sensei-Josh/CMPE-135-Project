@@ -20,10 +20,10 @@ enum bitType
 struct q_param
 {
 public:
-	q_param(wxString img, bitType format, wxString q, wxString c1, wxString c2, wxString c3, wxString c4, int a) : 
-		imgFile(img), type(format), question(q), first(c1), second(c2), third(c3), fourth(c4), answer(a) {}
-	q_param(wxString q, wxString c1, wxString c2, wxString c3, wxString c4, int a) : 
-		question(q), first(c1), second(c2), third(c3), fourth(c4), answer(a) {}
+	q_param(wxString img, bitType format, wxString q, wxString c1, wxString c2, wxString c3, wxString c4, int a, int qt) : 
+		imgFile(img), type(format), question(q), first(c1), second(c2), third(c3), fourth(c4), answer(a), qType(qt) {}
+	q_param(wxString q, wxString c1, wxString c2, wxString c3, wxString c4, int a, int qt) : 
+		question(q), first(c1), second(c2), third(c3), fourth(c4), answer(a), qType(qt) {}
 	
 	wxString imgFile;
 	bitType type;
@@ -33,6 +33,7 @@ public:
 	wxString third;
 	wxString fourth;
 	int answer;
+	int qType;
 };
 
 bitType StrToBit(string type)
