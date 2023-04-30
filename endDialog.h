@@ -19,7 +19,7 @@ public:
 
 		wxString total = wxString::Format(wxT("Your Score: %i | Total Score: %i\n"), score, max);
 		wxStaticText* label1 = new wxStaticText(this, wxID_ANY, total); //wxDefaultPosition, wxDefaultSize, wxST_ELLIPSIZE_START
-		label1->SetMinSize(wxSize(200, -1));
+		label1->SetMinSize(wxSize(300, -1));
 		//label1->Wrap(1000);
 		scoreSizer->Add(label1);
 
@@ -28,7 +28,7 @@ public:
 
 		wxString finalTitle = displayFinalTitle(percentage);
 		wxStaticText* label2 = new wxStaticText(this, wxID_ANY, finalTitle); // wxDefaultPosition, wxDefaultSize, wxST_ELLIPSIZE_START)
-		label2->SetMinSize(wxSize(200, -1));
+		label2->SetMinSize(wxSize(300, -1));
 		//label2->Wrap(1000);
 		scoreSizer->Add(label2);
 		
