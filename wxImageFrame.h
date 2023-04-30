@@ -99,6 +99,7 @@ private:
     void OnNewGame(wxCommandEvent& event) //new game
     {
     	quiz->Show(true);
+        GetMenuBar()->Enable(wxID_NEW, false);
         Layout(); // Need this so scrolling window shows when window not maximized!
     }
 

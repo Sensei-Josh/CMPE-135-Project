@@ -1,6 +1,7 @@
 #pragma once
 
 #include <wx/wx.h>
+//#include <wx/generic/artprov.h>
 #include <iostream>
 #include "enum.h"
 #include "questionPanels/Q0Panel.h"
@@ -10,6 +11,7 @@
 #include "fileHandler.h"
 #include "scorer.h"
 #include "endDialog.h"
+#include "wxImageFrame.h"
 
 using namespace std;
 
@@ -21,6 +23,8 @@ public:
 		fileHandler loader("q_data.txt");
 		wxSizer* main_sizer = new wxBoxSizer(wxVERTICAL);
 		
+		wxMenuItem *newItem = new wxMenuItem(NULL, wxID_NEW, "New"); //to access wxID_NEW
+
 		//set Round title
 		wxPanel *round_panel = new wxPanel(this, wxID_ANY);
 		//wxBoxSizer* roundSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -101,6 +105,7 @@ public:
 	
 	void OnEnd(wxCommandEvent& event)
 	{	
+		// GetMenuBar()->Enable(wxID_NEW, false);
 		endDialog dialog(this, _("Final Score"), s->get_max(), s->get_score());
 		dialog.ShowModal();
 		this->Hide();
