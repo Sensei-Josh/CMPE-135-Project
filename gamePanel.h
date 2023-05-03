@@ -37,27 +37,21 @@ public:
 
 		// questions section
 		
-		q_param quest1 = loader.getQuestion();
-		q_param quest2 = loader.getQuestion();
-		q_param quest3 = loader.getQuestion();
-		q_param quest4 = loader.getQuestion();
-		q_param quest5 = loader.getQuestion();
-		q_param quest6 = loader.getQuestion();
-		q_param quest7 = loader.getQuestion();
-		q_param quest8 = loader.getQuestion();
-		q_param quest9 = loader.getQuestion();
-		q_param quest10 = loader.getQuestion();
+		std::vector<Q0Panel*> questionPanels;
 		
-		Q0Panel* q1 = new Q1Panel(this, quest1, s);
-		Q0Panel* q2 = new Q2Panel(this, quest2, s);
-		Q0Panel* q3 = new Q2Panel(this, quest3, s);
-		Q0Panel* q4 = new Q1Panel(this, quest4, s);
-		Q0Panel* q5 = new Q1Panel(this, quest5, s);
-		Q0Panel* q6 = new Q1Panel(this, quest6, s);
-		Q0Panel* q7 = new Q2Panel(this, quest7, s);
-		Q0Panel* q8 = new Q1Panel(this, quest8, s);
-		Q0Panel* q9 = new Q1Panel(this, quest9, s);
-		Q0Panel* q10 = new Q2Panel(this, quest10, s);
+		int num_questions = 10;
+
+		questionPanels.reserve(num_questions);
+
+		for(int i = 0; i < num_questions; i++)
+		{
+			q_param question = loader.getQuestion();
+			if(question.qType == 1) {
+				questionPanels.push_back(new Q1Panel(this, question, s));
+			} else if(question.qType == 2) {
+				questionPanels.push_back(new Q2Panel(this, question, s));
+			}
+		}
 		
 		//set End Button
 		wxBoxSizer* endSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -72,40 +66,16 @@ public:
 		main_sizer->AddSpacer(30);
 		main_sizer->Add(round_panel, 0, wxALIGN_CENTER, 0);
 		main_sizer->AddSpacer(30);
-		
-		main_sizer->Add(q1, 0, wxALIGN_CENTER, 0);
-		main_sizer->AddSpacer(10);
-		
-		main_sizer->Add(q2, 0, wxALIGN_CENTER, 0);
-		main_sizer->AddSpacer(10);
 
-		main_sizer->Add(q3, 0, wxALIGN_CENTER, 0);
-		main_sizer->AddSpacer(10);
-		
-		main_sizer->Add(q4, 0, wxALIGN_CENTER, 0);
-		main_sizer->AddSpacer(10);
-		
-		main_sizer->Add(q5, 0, wxALIGN_CENTER, 0);
-		main_sizer->AddSpacer(10);
-		
-		main_sizer->Add(q6, 0, wxALIGN_CENTER, 0);
-		main_sizer->AddSpacer(10);
-		
-		main_sizer->Add(q7, 0, wxALIGN_CENTER, 0);
-		main_sizer->AddSpacer(10);
-		
-		main_sizer->Add(q8, 0, wxALIGN_CENTER, 0);
-		main_sizer->AddSpacer(10);
-		
-		main_sizer->Add(q9, 0, wxALIGN_CENTER, 0);
-		main_sizer->AddSpacer(10);
-		
-		main_sizer->Add(q10, 0, wxALIGN_CENTER, 0);
-		main_sizer->AddSpacer(10);
+		for(int i = 0; i < num_questions; i++)
+		{
+			main_sizer->Add(questionPanels[i], 0, wxALIGN_CENTER, 0);
+			main_sizer->AddSpacer(10);
+		}
 
 		main_sizer->AddSpacer(10);
 		main_sizer->Add(end_panel, 0, wxALIGN_RIGHT, 0);
-		
+
 		SetSizer(main_sizer);
 		this->FitInside();
 		this->SetScrollRate(5, 5);

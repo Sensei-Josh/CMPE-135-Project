@@ -50,6 +50,7 @@ private:
 	{
 		string question, c1, c2, c3, c4, answer;
 		
+	
 		getline(loader, question);
 		getline(loader, c1);
 		getline(loader, c2);
@@ -83,6 +84,9 @@ private:
 		getline(loader, c3);
 		getline(loader, c4);
 		getline(loader, answer);
+
+		img.erase(img.find_last_not_of("\t\n\r ") + 1);
+		format.erase(format.find_last_not_of("\t\n\r ") + 1);
 		
 		q_param quest(wxString::FromUTF8(img.data()), StrToBit(format), 
 			wxString::FromUTF8(question.data()), wxString::FromUTF8(c1.data()), 
