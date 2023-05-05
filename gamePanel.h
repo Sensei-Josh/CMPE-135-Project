@@ -20,9 +20,11 @@ using namespace std;
 class gamePanel : public wxScrolledWindow
 {
 public:
-	gamePanel(wxWindow* parent) : wxScrolledWindow(parent, wxID_ANY)
+	gamePanel(wxWindow* parent, wxFrame* ptr) : wxScrolledWindow(parent, wxID_ANY)
 	{
 		fileHandler loader("q_data.txt");
+		enabler = ptr;
+		
 		main_sizer = new wxBoxSizer(wxVERTICAL);
 		
 		wxMenuItem *newItem = new wxMenuItem(NULL, wxID_NEW, "New"); //to access wxID_NEW
@@ -83,7 +85,7 @@ public:
 	
 	void OnEnd(wxCommandEvent& event)
 	{	
-		// GetMenuBar()->Enable(wxID_NEW, false);
+		enabler->GetMenuBar()->Enable(wxID_NEW, true);
 		endDialog dialog(this, _("Final Score"), s->get_max(), s->get_score());
 		dialog.ShowModal();
 		this->Hide();
@@ -94,6 +96,7 @@ private:
 	wxPanel *end_panel = new wxPanel(this, wxID_ANY);
 	vector<Q0Panel> panels;
 	wxSizer* main_sizer;
+	wxFrame* enabler;
 	
 	wxButton* endButton = new wxButton(end_panel, wxID_ANY, "Finish", wxPoint(100, 50), wxSize(70,20));
 };
