@@ -22,7 +22,7 @@ class gamePanel : public wxScrolledWindow
 public:
 	gamePanel(wxWindow* parent, wxFrame* ptr) : wxScrolledWindow(parent, wxID_ANY)
 	{
-		fileHandler loader("q_data.txt");
+		//fileHandler loader("q_data.txt");
 		enabler = ptr;
 		
 		main_sizer = new wxBoxSizer(wxVERTICAL);
@@ -38,22 +38,10 @@ public:
 		//roundSizer->Add(roundTitle);
 
 		// questions section
-		
-		std::vector<Q0Panel*> questionPanels;
-		
 		int num_questions = 10;
-
 		questionPanels.reserve(num_questions);
-
-		for(int i = 0; i < num_questions; i++)
-		{
-			q_param question = loader.getQuestion();
-			if(question.qType == 1) {
-				questionPanels.push_back(new Q1Panel(this, question, s));
-			} else if(question.qType == 2) {
-				questionPanels.push_back(new Q2Panel(this, question, s));
-			}
-		}
+		
+		add_questions(num_questions);
 		
 		//set End Button
 		wxBoxSizer* endSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -94,9 +82,24 @@ public:
 private:
 	scorer* s = new scorer(10);
 	wxPanel *end_panel = new wxPanel(this, wxID_ANY);
-	vector<Q0Panel> panels;
 	wxSizer* main_sizer;
 	wxFrame* enabler;
 	
+	vector<Q0Panel*> questionPanels;
 	wxButton* endButton = new wxButton(end_panel, wxID_ANY, "Finish", wxPoint(100, 50), wxSize(70,20));
+	
+	void add_questions(int num)
+	{
+		fileHandler loader("q_data.txt");
+		
+		for(int i = 0; i < num; i++)
+		{
+			q_param question = loader.getQuestion();
+			if(question.qType == 1) {
+				questionPanels.push_back(new Q1Panel(this, question, s));
+			} else if(question.qType == 2) {
+				questionPanels.push_back(new Q2Panel(this, question, s));
+			}
+		}
+	}
 };
