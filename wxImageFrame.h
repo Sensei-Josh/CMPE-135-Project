@@ -1,6 +1,7 @@
 #pragma once
 
 #include <wx/wx.h>
+#include <wx/sound.h>
 #include "enum.h"
 #include "gamePanel.h"
 
@@ -13,11 +14,12 @@ public:
         wxFrame(parent, wxID_ANY, "RPS DOODS Style")
 	{
 		init_bg_img(file, format);
-        init_menu_bar();
-        init_frame_size();
+        	init_menu_bar();
+        	init_frame_size();
+        	start_music();
 
-        CreateStatusBar();
-    	SetStatusText("Welcome, are you a Pokemon Master?"); 
+        	CreateStatusBar();
+    		SetStatusText("Welcome, are you a Pokemon Master?"); 
 	}
 
     wxDECLARE_EVENT_TABLE();
@@ -28,6 +30,7 @@ private:
     wxPanel* m_imagePanel;
     wxImage m_image;
     wxBitmap m_scaledBg;
+    wxSound* bg_music;
 
     void init_menu_bar()
     {
@@ -60,7 +63,7 @@ private:
         m_imagePanel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(600,700));
         CreateScaledBg();
 
-        quiz = new gamePanel(m_imagePanel);
+        quiz = new gamePanel(m_imagePanel, this);
 
         wxBoxSizer* bg_sizer = new wxBoxSizer(wxVERTICAL);
         bg_sizer->Add(quiz, 1, wxEXPAND);
@@ -80,6 +83,12 @@ private:
         frameSizer->Add(m_imagePanel, 0, wxEXPAND, 0);
 
         this->SetSizerAndFit(frameSizer);
+    }
+    
+    void start_music()
+    {
+    	bg_music = new wxSound(_T("Pokémon Original Series - Theme Song (Lofi Lia Remix).wav"), false);
+    	if(bg_music->IsOk()) bg_music->Play(wxSOUND_ASYNC | wxSOUND_LOOP);
     }
 
     void OnImagePanelPaint(wxPaintEvent&)
