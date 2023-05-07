@@ -11,7 +11,7 @@ class wxImageFrame: public wxFrame
 {
 public:
     wxImageFrame(wxWindow *parent, wxString file, wxBitmapType format) : 
-        wxFrame(parent, wxID_ANY, "RPS DOODS Style")
+        wxFrame(parent, wxID_ANY, "PokeTest")
 	{
 		init_bg_img(file, format);	//set the background image
         	init_menu_bar();		//sets menu bar

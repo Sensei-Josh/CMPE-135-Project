@@ -14,22 +14,18 @@ public:
 	{
 		wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
 		wxBoxSizer* scoreSizer = new wxBoxSizer(wxVERTICAL); //was wxHorizontal
-		//wxPanel scorePanel = new wxPanel(this);
-		//wxPanel numPanel = new wxPanel(this);
 
 		int percentage = score * 10; 
 
 		wxString total = wxString::Format(wxT("Your Score: %i | Total Score: %i | Percentage: %i% \n"), score, max, percentage);
 		wxStaticText* label1 = new wxStaticText(this, wxID_ANY, total); //wxDefaultPosition, wxDefaultSize, wxST_ELLIPSIZE_START
 		label1->SetMinSize(wxSize(350, -1));
-		//label1->Wrap(1000);
 		scoreSizer->Add(label1);
 		
 		//Display Title for the score
 		wxString finalTitle = displayFinalTitle(percentage);
 		wxStaticText* label2 = new wxStaticText(this, wxID_ANY, finalTitle); // wxDefaultPosition, wxDefaultSize, wxST_ELLIPSIZE_START)
 		label2->SetMinSize(wxSize(300, -1));
-		//label2->Wrap(1000);
 		scoreSizer->Add(label2);
 
 		mainSizer->AddSpacer(10);

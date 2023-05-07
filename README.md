@@ -1,8 +1,8 @@
 # CMPE-135-Project
 
-This is a quiz-type game that tests ones knowledge on Pokemon.
+This is a quiz-type game that tests one's knowledge on Pokemon.
 
-This has been run and successfully tested on Linux.
+This has been run and successfully tested on Linux and Windows.
 Place project in WxWidgets folder.
 
 Instructions:
