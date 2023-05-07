@@ -15,15 +15,16 @@ public:
 		init_questionPanel(p.question);
 		init_buttonPanel(p.first, p.second, p.third, p.fourth);
 		
-		
-		mainSizer->AddSpacer(20);
-		mainSizer->Add(questionPanel, 0, wxALIGN_CENTER, 0);
+		mainSizer->AddSpacer(10);
+		mainSizer->Add(questionPanel, 0, wxALIGN_CENTER);
 		mainSizer->AddSpacer(10);
 		
 		mainSizer->Add(buttonPanel, 0, wxALIGN_CENTER, 0);
+		mainSizer->AddSpacer(10);
+		
+		this->SetBackgroundColour(wxColour(*wxRED));
 		
 		this->SetSizer(mainSizer);
-        	this->SetBackgroundColour(wxColour(*wxGREEN));
 		
 		sPtr = s;
 		answer = p.answer;
@@ -39,7 +40,7 @@ private:
 	void init_questionPanel(wxString q)
 	{
 		questionPanel = new wxPanel(this, wxID_ANY);
-		
+		questionPanel->SetForegroundColour(wxColour(*wxWHITE));
 		wxStaticText* qTitle = new wxStaticText(questionPanel, wxID_ANY, q);
 		qTitle->SetMinSize(wxSize(200, -1));
 	}

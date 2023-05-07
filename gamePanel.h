@@ -30,11 +30,11 @@ public:
 		wxMenuItem *newItem = new wxMenuItem(NULL, wxID_NEW, "New"); //to access wxID_NEW
 
 		//set Round title
-		wxPanel *round_panel = new wxPanel(this, wxID_ANY);
+		wxPanel *round_panel = new ImgPanel(this, "images/PokeTest.png", png, wxSize(200, 100));
 		//wxBoxSizer* roundSizer = new wxBoxSizer(wxHORIZONTAL);
 		
-		wxStaticText* roundTitle = new wxStaticText(round_panel, wxID_ANY, "The Poke Test: ");
-		roundTitle->SetMinSize(wxSize(200, -1));
+		//wxStaticText* roundTitle = new wxStaticText(round_panel, wxID_ANY, "The PokeTest: ");
+		//roundTitle->SetMinSize(wxSize(200, -1));
 		//roundSizer->Add(roundTitle);
 
 		// questions section

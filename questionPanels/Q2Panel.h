@@ -13,7 +13,7 @@ public:
 	{
 		mainSizer = new wxBoxSizer(wxVERTICAL);
 		
-		image = new ImgPanel(this, p.imgFile, p.type);
+		image = new ImgPanel(this, p.imgFile, p.type, wxSize(250, 250));
 		init_questionPanel(p.question);
 		init_buttonPanel(p.first, p.second, p.third, p.fourth);
 		
@@ -27,7 +27,7 @@ public:
 		mainSizer->Add(buttonPanel, 0, wxALIGN_CENTER, 0);
 		
 		this->SetSizer(mainSizer);
-		this->SetBackgroundColour(wxColour(*wxGREEN));
+		this->SetBackgroundColour(wxColour(*wxWHITE));
 		
 		sPtr = s;
 		answer = p.answer;

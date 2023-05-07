@@ -6,7 +6,8 @@
 class ImgPanel : public wxPanel
 {
 public:
-	ImgPanel(wxWindow* parent, wxString file, bitType format) : wxPanel(parent, wxID_ANY, wxDefaultPosition, wxSize(250,250))
+	ImgPanel(wxWindow* parent, wxString file, bitType format, wxSize size) : 
+		wxPanel(parent, wxID_ANY, wxDefaultPosition, size)
 	{
 		wxBitmapType type = chooseFactory(format);
 		m_image = wxImage(file, type);
