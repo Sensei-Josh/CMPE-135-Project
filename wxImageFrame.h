@@ -16,7 +16,6 @@ public:
 		init_bg_img(file, format);
         	init_menu_bar();
         	init_frame_size();
-        	start_music();
 
         	CreateStatusBar();
     		SetStatusText("Welcome, are you a Pokemon Master?"); 
@@ -30,7 +29,6 @@ private:
     wxPanel* m_imagePanel;
     wxImage m_image;
     wxBitmap m_scaledBg;
-    wxSound* bg_music;
 
     void init_menu_bar()
     {
@@ -42,13 +40,9 @@ private:
  
     	wxMenu *menuAbout = new wxMenu;
     	menuAbout->Append(wxID_ABOUT);
-
-	wxMenu *menuSettings = new wxMenu; 
-	menuSettings->Append(SETTINGS, "&Settings...\tCtrl-S", "System Settings");
  
     	wxMenuBar *menuBar = new wxMenuBar;
     	menuBar->Append(menuFile, "&Menu");
-	menuBar->Append(menuSettings, "&Settings");
     	menuBar->Append(menuAbout, "&About");
  
     	SetMenuBar( menuBar );
@@ -84,12 +78,6 @@ private:
 
         this->SetSizerAndFit(frameSizer);
     }
-    
-    void start_music()
-    {
-    	bg_music = new wxSound(_T("Pokémon Original Series - Theme Song (Lofi Lia Remix).wav"), false);
-    	if(bg_music->IsOk()) bg_music->Play(wxSOUND_ASYNC | wxSOUND_LOOP);
-    }
 
     void OnImagePanelPaint(wxPaintEvent&)
     {
@@ -120,11 +108,6 @@ private:
                  "About Hello World", wxOK | wxICON_INFORMATION);
     }
 
-    void OnSettings(wxCommandEvent& event)
-    {
-    	Close(true);
-    }
-
     void OnExit(wxCommandEvent& event)
     {
     	Close(true);
@@ -134,7 +117,6 @@ private:
 wxBEGIN_EVENT_TABLE(wxImageFrame, wxFrame)
 	EVT_MENU(wxID_NEW, wxImageFrame::OnNewGame)
 	EVT_MENU(wxID_EXIT, wxImageFrame::OnExit)
-	EVT_MENU(SETTINGS, wxImageFrame::OnSettings)
 	EVT_MENU(wxID_ABOUT, wxImageFrame::OnAbout)
 wxEND_EVENT_TABLE()
 

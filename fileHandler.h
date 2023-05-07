@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class fileHandler : public wxPanel
+class fileHandler
 {
 public:
 	fileHandler(string data)
