@@ -31,11 +31,6 @@ public:
 
 		//set Round title
 		wxPanel *round_panel = new ImgPanel(this, "images/PokeTest.png", png, wxSize(200, 100));
-		//wxBoxSizer* roundSizer = new wxBoxSizer(wxHORIZONTAL);
-		
-		//wxStaticText* roundTitle = new wxStaticText(round_panel, wxID_ANY, "The PokeTest: ");
-		//roundTitle->SetMinSize(wxSize(200, -1));
-		//roundSizer->Add(roundTitle);
 
 		// questions section
 		int num_questions = 10;
