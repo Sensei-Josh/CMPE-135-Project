@@ -40,7 +40,6 @@ public:
 		
 		//set End Button
 		wxBoxSizer* endSizer = new wxBoxSizer(wxHORIZONTAL);
-		
 		endButton->Bind(wxEVT_BUTTON, &gamePanel::OnEnd, this);
 		
 		endSizer->Add(endButton);
@@ -68,10 +67,28 @@ public:
 	
 	void OnEnd(wxCommandEvent& event)
 	{	
+		//re-enable the new game menu option
 		enabler->GetMenuBar()->Enable(wxID_NEW, true);
+		
+		//generate a dialog box to show players total score
 		endDialog dialog(this, _("Final Score"), s->get_max(), s->get_score());
 		dialog.ShowModal();
+		
+		//hide gamePanel and reset the game
 		this->Hide();
+		reset_game();
+	}
+	
+	void reset_game()
+	{
+		//reset the questions
+		
+		s->reset();
+		
+		for(auto & it : questionPanels)
+		{
+			it->reset();
+		}
 	}
 
 private:
@@ -85,8 +102,10 @@ private:
 	
 	void add_questions(int num)
 	{
+		//open data file
 		fileHandler loader("q_data.txt");
 		
+		//read through the file and create questions then add to questionPanels vector
 		for(int i = 0; i < num; i++)
 		{
 			q_param question = loader.getQuestion();

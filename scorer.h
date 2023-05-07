@@ -5,12 +5,16 @@
 
 using namespace std;
 
+/*
+	scorer class responsible for holding game stats
+*/
+
 class scorer
 {
 private:
-	float score;
-	int max;
-	int qs_answered;
+	float score;	//players score
+	int max;	//max possible score
+	int qs_answered;//number of questions answered
 public:
 	scorer(int m)
 	{
@@ -34,7 +38,6 @@ public:
 	void reset() 
 	{
 		score = 0;
-		max = 0;
 		qs_answered = 0;
 	}
 };

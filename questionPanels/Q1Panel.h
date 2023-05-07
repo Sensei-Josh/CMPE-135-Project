@@ -4,6 +4,11 @@
 #include "Q0Panel.h"
 #include "../enum.h"
 
+/*
+	question panel for type 1 questions, child of Q0Panel
+	components: question, 4 button choices
+*/
+
 class Q1Panel : public Q0Panel
 {
 public:
@@ -29,6 +34,11 @@ public:
 		sPtr = s;
 		answer = p.answer;
 	}
+	
+	void reset() override
+	{
+		EnableButtons();
+	}
 private:
 	wxPanel* buttonPanel;
 	
@@ -39,6 +49,7 @@ private:
 	
 	void init_questionPanel(wxString q)
 	{
+		//write question onto a panel
 		questionPanel = new wxPanel(this, wxID_ANY);
 		questionPanel->SetForegroundColour(wxColour(*wxWHITE));
 		wxStaticText* qTitle = new wxStaticText(questionPanel, wxID_ANY, q);
@@ -47,6 +58,7 @@ private:
 	
 	void init_buttonPanel(wxString C1, wxString C2, wxString C3, wxString C4)
 	{
+		//create and set choice buttons based on passed arguments
 		buttonPanel = new wxPanel(this, wxID_ANY);
 		wxBoxSizer* bSizer = new wxBoxSizer(wxVERTICAL);
 		
@@ -86,6 +98,9 @@ private:
 		b3->Enable(true);
 		b4->Enable(true);
 	}
+	
+	//on each button event
+	//check if correct choice then disable buttons to prevent changing answers
 	
 	void Onb1(wxCommandEvent& event)
 	{

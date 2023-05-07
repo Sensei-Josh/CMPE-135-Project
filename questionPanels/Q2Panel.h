@@ -5,6 +5,11 @@
 #include "Q0Panel.h"
 #include "../enum.h"
 
+/*
+	question panel for type 2 questions, child of Q0Panel
+	components: image, question, 4 button choices
+*/
+
 class Q2Panel : public Q0Panel
 {
 public:
@@ -13,6 +18,7 @@ public:
 	{
 		mainSizer = new wxBoxSizer(wxVERTICAL);
 		
+		//create a ImgPanel based on passed arguments
 		image = new ImgPanel(this, p.imgFile, p.type, wxSize(250, 250));
 		init_questionPanel(p.question);
 		init_buttonPanel(p.first, p.second, p.third, p.fourth);
@@ -32,6 +38,11 @@ public:
 		sPtr = s;
 		answer = p.answer;
 	}
+	
+	void reset() override
+	{
+		EnableButtons();
+	}
 private:
 	wxPanel* image;
 	wxPanel* buttonPanel;
@@ -43,6 +54,7 @@ private:
 	
 	void init_questionPanel(wxString q)
 	{
+		//write question onto a panel
 		questionPanel = new wxPanel(this, wxID_ANY);
 		
 		wxStaticText* qTitle = new wxStaticText(questionPanel, wxID_ANY, q);
@@ -51,6 +63,7 @@ private:
 	
 	void init_buttonPanel(wxString C1, wxString C2, wxString C3, wxString C4)
 	{
+		//create and set choice buttons based on passed arguments
 		buttonPanel = new wxPanel(this, wxID_ANY);
 		wxBoxSizer* bSizer = new wxBoxSizer(wxHORIZONTAL);
 		
@@ -90,6 +103,9 @@ private:
 		b3->Enable(true);
 		b4->Enable(true);
 	}
+	
+	//on each button event
+	//check if correct choice then disable buttons to prevent changing answers
 	
 	void Onb1(wxCommandEvent& event)
 	{

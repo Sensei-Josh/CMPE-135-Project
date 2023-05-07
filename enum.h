@@ -5,6 +5,7 @@
 
 using namespace std;
 
+//enumerations of various IDS
 enum ID_Frame1 
 {
 	SETTINGS = 1
@@ -17,6 +18,7 @@ enum bitType
 
 };
 
+//container to hold question information used in fileHandler.h, and QXPanels
 struct q_param
 {
 public:

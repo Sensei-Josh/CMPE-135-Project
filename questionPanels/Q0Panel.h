@@ -3,6 +3,10 @@
 #include <wx/wx.h>
 #include "../scorer.h"
 
+/*
+	parent question panel class used for Liskov Substitution Principle
+*/
+
 class Q0Panel : public wxPanel
 {
 public:
@@ -12,4 +16,6 @@ public:
 	
 	scorer* sPtr;
 	int answer;
+	
+	virtual void reset() {};
 };
